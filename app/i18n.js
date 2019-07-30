@@ -8,54 +8,54 @@
  *   You CANNOT use import/export in this file.
  */
 const addLocaleData = require('react-intl').addLocaleData; //eslint-disable-line
-const enLocaleData = require('react-intl/locale-data/en');
-const frLocaleData = require('react-intl/locale-data/fr');
-const arLocaleData = require('react-intl/locale-data/ar');
-const taLocaleData = require('react-intl/locale-data/ta');
+const enLocaleData = require('react-intl/locale-data/en')
+const frLocaleData = require('react-intl/locale-data/fr')
+const arLocaleData = require('react-intl/locale-data/ar')
+const taLocaleData = require('react-intl/locale-data/ta')
 
-const enTranslationMessages = require('./translations/en.json');
-const frTranslationMessages = require('./translations/fr.json');
-const arTranslationMessages = require('./translations/ar.json');
-const taTranslationMessages = require('./translations/ta.json');
+const enTranslationMessages = require('./translations/en.json')
+const frTranslationMessages = require('./translations/fr.json')
+const arTranslationMessages = require('./translations/ar.json')
+const taTranslationMessages = require('./translations/ta.json')
 
-addLocaleData(enLocaleData);
-addLocaleData(frLocaleData);
-addLocaleData(arLocaleData);
-addLocaleData(taLocaleData);
+addLocaleData(enLocaleData)
+addLocaleData(frLocaleData)
+addLocaleData(arLocaleData)
+addLocaleData(taLocaleData)
 
-const DEFAULT_LOCALE = 'en';
+const DEFAULT_LOCALE = 'en'
 
 // prettier-ignore
 const appLocales = [
   'en',
   'fr',
   'ar',
-  'ta',
-];
+  'ta'
+]
 
 const formatTranslationMessages = (locale, messages) => {
   const defaultFormattedMessages =
     locale !== DEFAULT_LOCALE
       ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages)
-      : {};
+      : {}
   const flattenFormattedMessages = (formattedMessages, key) => {
     const formattedMessage =
       !messages[key] && locale !== DEFAULT_LOCALE
         ? defaultFormattedMessages[key]
-        : messages[key];
-    return Object.assign(formattedMessages, { [key]: formattedMessage });
-  };
-  return Object.keys(messages).reduce(flattenFormattedMessages, {});
-};
+        : messages[key]
+    return Object.assign(formattedMessages, { [key]: formattedMessage })
+  }
+  return Object.keys(messages).reduce(flattenFormattedMessages, {})
+}
 
 const translationMessages = {
   en: formatTranslationMessages('en', enTranslationMessages),
   fr: formatTranslationMessages('fr', frTranslationMessages),
   ar: formatTranslationMessages('ar', arTranslationMessages),
-  ta: formatTranslationMessages('ta', taTranslationMessages),
-};
+  ta: formatTranslationMessages('ta', taTranslationMessages)
+}
 
-exports.appLocales = appLocales;
-exports.formatTranslationMessages = formatTranslationMessages;
-exports.translationMessages = translationMessages;
-exports.DEFAULT_LOCALE = DEFAULT_LOCALE;
+exports.appLocales = appLocales
+exports.formatTranslationMessages = formatTranslationMessages
+exports.translationMessages = translationMessages
+exports.DEFAULT_LOCALE = DEFAULT_LOCALE
